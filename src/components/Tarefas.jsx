@@ -74,15 +74,15 @@ const Tarefas = () => {
         <div className="flex justify-center gap-1 mb-6 font-medium">
             Filtrar por: 
             <button onClick={() => setFiltro("Todas")}
-                className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor- text-white">
+                className= {`${filtro === "Todas" ? "bg-gray-800" : "bg-gray-700"} hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer text-white`}>
                 Todas
             </button>
             <button onClick={() => setFiltro("Pendente")}
-                className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor- text-white">
+                className={`${filtro === "Pendente" ? "bg-gray-800" : "bg-gray-700"} hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer text-white`}>
                 Pendente
             </button>
             <button onClick={() => setFiltro("Concluida")}
-                className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor- text-white">
+                className={`${filtro === "Concluida" ? "bg-gray-800" : "bg-gray-700"} hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer text-white`}>
                 Concluída
             </button>
         </div>
@@ -100,7 +100,10 @@ const Tarefas = () => {
 
                 <div className="flex items-center gap-2 font-medium">
                     {tarefa.status}
-                    <button onClick={()=> TarefaConcluida(tarefa.id)}
+                    <button onClick={()=> {
+                        TarefaConcluida(tarefa.id)
+
+                    }}
                         className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer">
                         {tarefa.status === "Pendente" ? "🟪" : "☑️"}
                      
