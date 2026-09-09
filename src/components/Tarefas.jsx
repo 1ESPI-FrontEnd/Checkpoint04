@@ -98,14 +98,14 @@ const Tarefas = () => {
                 */}
                 <div className="flex items-center gap-2">
 
-                <label htmlFor="concluida" className="flex items-center gap-2 font-medium">
+                <div className="flex items-center gap-2 font-medium">
                     {tarefa.status}
                     <button onClick={()=> TarefaConcluida(tarefa.id)}
                         className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer">
                         {tarefa.status === "Pendente" ? "🟪" : "☑️"}
                      
                     </button>
-                </label>
+                </div>
                 <button onClick={()=> RemoverTarefa(tarefa.id)}
                 className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer">
                 X
