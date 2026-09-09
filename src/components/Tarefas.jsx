@@ -76,15 +76,15 @@ const Tarefas = () => {
         <div className="flex justify-center gap-1 mb-6 font-medium">
             Filtrar por: 
             <button onClick={() => setFiltro("Todas")}
-                className="">
+                className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor- text-white">
                 Todas
             </button>
             <button onClick={() => setFiltro("Pendente")}
-                className="">
+                className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor- text-white">
                 Pendente
             </button>
-            <button onClick={() => setFiltro("Concluida")}
-                className="">
+            <button onClick={("Concluida")}
+                className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor- text-white">
                 Concluída
             </button>
         </div>
