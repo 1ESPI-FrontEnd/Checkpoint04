@@ -34,40 +34,40 @@ const Tarefas = () => {
 
   return (
     <>
-        <div className="">
-        <h2 className="">Minha Lista de Tarefas</h2>
+        <div className="max-w-md mx-auto mt-10 p-6 bg-gray-400 rounded-2xl shadow-2xl border border-gray-400">
+        <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">Minha Lista de Tarefas</h2>
 
-        <form onSubmit={AdicionarTarefa} className="">
+        <form onSubmit={AdicionarTarefa} className="flex gap-2 mb-6">
             <input
             type="text"
             value={campo}
             onChange={(e) => setCampo(e.target.value)}
             placeholder="Digite uma nova tarefa..."
-            className=""
+            className="flex-1 px-4 border border-gray-700 rounded-lg focus:outline-none focus:ring-1 "
             />
-            <button type="submit" className="">
+            <button type="submit" className="bg-gray-500 hover:bg-gray-600 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer">
             Adicionar
             </button>
         </form>
 
         <ul className="space-y-3">
             {tarefas.map((tarefa) => (
-            <li key={tarefa.id} className="">
+            <li key={tarefa.id} className="flex items-center justify-around p-3 bg-gray-500 rounded-2xl border border-b-gray-800 shadow-2xl hover:bg-gray-600">
                 <span className="">{tarefa.text}</span>
-
+                
                 {/* arrow function (função seta) que encapsula a execução de outra função. 
                 Ela garante que RemoverTarefa só seja executada quando o evento acontecer (como um clique de botão), 
                 e não assim que a página carregar.
                 */}
                 <button onClick={()=> RemoverTarefa(tarefa.id)}
-                className="">
+                className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer">
                 Excluir
                 </button>
             </li>
             ))}
         </ul>
 
-        {tarefas.length === 0 && <p className="">Nenhuma tarefa salva.</p>}
+        {tarefas.length === 0 && <p className="text-center text-gray-700 italic mt-4">Nenhuma tarefa salva.</p>}
         </div>
       
     </>
