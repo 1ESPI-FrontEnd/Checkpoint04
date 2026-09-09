@@ -8,6 +8,8 @@ const Tarefas = () => {
     });
     const [campo, setCampo] = useState("");
 
+    const [filtro, setFiltro] = useState("Todas");
+
     //HOOK-useEffect - realiza um efeito colateral, no exemplo vai
     //carregar automaticamente as tarefas cadastradas.
     useEffect(() => {
@@ -44,6 +46,15 @@ const Tarefas = () => {
         setTarefas(atualizarTarefas);
     };
 
+    const FiltrarTarefas = (status) => {
+        if (status === "Todas") {
+            const todasTarefas = JSON.parse(localStorage.getItem("item-tarefa")) || [];
+
+            return todasTarefas;
+        }
+        return tarefas.filter((tarefa) => tarefa.status === status);
+    };
+
   return (
     <>
         <div className="max-w-md mx-auto mt-10 p-6 bg-gray-400 rounded-2xl shadow-2xl border border-gray-400">
@@ -62,8 +73,24 @@ const Tarefas = () => {
             </button>
         </form>
 
+        <div className="flex justify-center gap-1 mb-6 font-medium">
+            Filtrar por: 
+            <button onClick={() => setFiltro("Todas")}
+                className="">
+                Todas
+            </button>
+            <button onClick={() => setFiltro("Pendente")}
+                className="">
+                Pendente
+            </button>
+            <button onClick={() => setFiltro("Concluida")}
+                className="">
+                Concluída
+            </button>
+        </div>
+
         <ul className="space-y-3">
-            {tarefas.map((tarefa) => (
+            {FiltrarTarefas(filtro).map((tarefa) => (
             <li key={tarefa.id} className="flex items-center justify-between p-3 bg-gray-500 rounded-2xl border border-b-gray-800 shadow-2xl hover:bg-gray-600">
                 <span className="">{tarefa.text}</span>
                 
