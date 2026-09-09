@@ -27,7 +27,7 @@ const Tarefas = () => {
         }
 
         setTarefas([...tarefas, novaTarefa]);
-        setCampo();
+        setCampo("");
     };
 
     const RemoverTarefa = (id) => {
@@ -48,9 +48,7 @@ const Tarefas = () => {
 
     const FiltrarTarefas = (status) => {
         if (status === "Todas") {
-            const todasTarefas = JSON.parse(localStorage.getItem("item-tarefa")) || [];
-
-            return todasTarefas;
+            return tarefas;
         }
         return tarefas.filter((tarefa) => tarefa.status === status);
     };
@@ -83,7 +81,7 @@ const Tarefas = () => {
                 className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor- text-white">
                 Pendente
             </button>
-            <button onClick={("Concluida")}
+            <button onClick={() => setFiltro("Concluida")}
                 className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor- text-white">
                 Concluída
             </button>
