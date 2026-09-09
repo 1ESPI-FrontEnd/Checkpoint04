@@ -21,6 +21,7 @@ const Tarefas = () => {
         const novaTarefa = {
             id:Date.now(),
             text:campo,
+            status: "Pendente",
         }
 
         setTarefas([...tarefas, novaTarefa]);
@@ -31,6 +32,17 @@ const Tarefas = () => {
         const apagarTarefas = tarefas.filter((tarefa) => tarefa.id !== id);
         setTarefas(apagarTarefas);
     }
+
+    const TarefaConcluida = (id) => {
+        const atualizarTarefas = tarefas.map((tarefa) => {
+            if (tarefa.id === id) {
+                return {...tarefa, status: tarefa.status === "Pendente" ? "Concluida" : "Pendente"};
+            }
+            return tarefa;
+        });
+
+        setTarefas(atualizarTarefas);
+    };
 
   return (
     <>
@@ -52,17 +64,28 @@ const Tarefas = () => {
 
         <ul className="space-y-3">
             {tarefas.map((tarefa) => (
-            <li key={tarefa.id} className="flex items-center justify-around p-3 bg-gray-500 rounded-2xl border border-b-gray-800 shadow-2xl hover:bg-gray-600">
+            <li key={tarefa.id} className="flex items-center justify-between p-3 bg-gray-500 rounded-2xl border border-b-gray-800 shadow-2xl hover:bg-gray-600">
                 <span className="">{tarefa.text}</span>
                 
                 {/* arrow function (função seta) que encapsula a execução de outra função. 
                 Ela garante que RemoverTarefa só seja executada quando o evento acontecer (como um clique de botão), 
                 e não assim que a página carregar.
                 */}
-                <button onClick={()=> RemoverTarefa(tarefa.id)}
-                className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer">
-                Excluir
-                </button>
+                <div className="">
+
+                    <label htmlFor="concluida" className="">
+                        {tarefa.status}
+                        <button onClick={()=> TarefaConcluida(tarefa.id)}
+                            className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer">
+                            {tarefa.status === "Pendente" ? "🟪" : "☑️"}
+                        
+                        </button>
+                    </label>
+                    <button onClick={()=> RemoverTarefa(tarefa.id)}
+                    className="bg-gray-700 hover:bg-gray-800 font-medium px-5 py-1 rounded-2xl transition-colors cursor-pointer">
+                    X
+                    </button>
+                    </div>
             </li>
             ))}
         </ul>
